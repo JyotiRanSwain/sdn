@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | Sodesi</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.login-container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); padding: 50px 40px; width: 100%; max-width: 420px; }
+.login-header { text-align: center; margin-bottom: 40px; }
+.login-header img { width: 80px; height: 80px; margin-bottom: 20px; }
+.login-header h1 { color: #2E7D32; font-size: 28px; margin-bottom: 10px; }
+.login-header p { color: #666; font-size: 14px; }
+.form-group { margin-bottom: 24px; }
+.form-group label { display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px; }
+.form-group input { width: 100%; padding: 14px 18px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 15px; font-family: inherit; transition: all 0.3s; }
+.form-group input:focus { outline: none; border-color: #2E7D32; box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1); }
+.btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: inherit; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(46, 125, 50, 0.4); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.error-message { background: #FFEBEE; color: #C62828; padding: 12px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; display: none; white-space: pre-line; }
+.error-message.show { display: block; }
+.footer-text { text-align: center; margin-top: 30px; color: #999; font-size: 12px; }
+.footer-text a { color: #2E7D32; text-decoration: none; }
+.loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 1s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="login-container">
+  <div class="login-header">
+    <img src="../images/logo.png" alt="Sodesi" onerror="this.src='https://via.placeholder.com/80?text=S'">
+    <h1>Admin Portal</h1>
+    <p>Sodesi Management System</p>
+  </div>
+
+  <div class="error-message" id="errorMsg"></div>
+
+  <form id="loginForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" required autocomplete="username" placeholder="Enter username" value="admin">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" required autocomplete="current-password" placeholder="Enter password">
+    </div>
+
+    <button type="submit" class="btn" id="loginBtn">
+      <span id="btnText">Login</span>
+    </button>
+  </form>
+
+  <div class="footer-text">
+    <p>🔒 Secured by Google Apps Script</p>
+    <p><a href="../index.html">← Back to Website</a></p>
+  </div>
+</div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════╗
+// ║  YOUR APPS SCRIPT URL - UPDATE THIS IF NEEDED                    ║
+// ╚══════════════════════════════════════════════════════════════════╝
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx8V7EceiTzzSw2Yq9GA1tt7SihDHEXLPAu9KJACD5z-2NlGYSzlvnLYVURGAFPde0GRw/exec';
+
+// Already logged in? Go to dashboard immediately
+if (sessionStorage.getItem('sodesi_admin_token')) {
+  window.location.href = 'index.html';
+}
+
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const btn = document.getElementById('loginBtn');
+  const btnText = document.getElementById('btnText');
+  const errorMsg = document.getElementById('errorMsg');
+  
+  btn.disabled = true;
+  btnText.innerHTML = '<span class="loading"></span>';
+  errorMsg.classList.remove('show');
+  
+  try {
+    const response = await fetch(APPS_SCRIPT_URL + '?path=/api/admin/login', {
+      method: 'POST',
+      redirect: 'follow',  // This is the key! Google Apps Script always redirects POST
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+      })
+    });
+    
+    const text = await response.text();
+    
+    // Detect if Google returned its own login page instead of our JSON
+    if (text.indexOf('accounts.google.com') !== -1 || text.indexOf('<!DOCTYPE html>') !== -1) {
+      throw new Error('Google is blocking access. Check deployment is set to "Anyone".');
+    }
+    
+    const data = JSON.parse(text);
+    
+    if (data.success && data.token) {
+      // SAVE THE TOKEN - the dashboard will use this
+      sessionStorage.setItem('sodesi_admin_token', data.token);
+      sessionStorage.setItem('sodesi_admin_user', JSON.stringify(data.user));
+      // Go to dashboard (no blinking loop!)
+      window.location.href = 'index.html';
+    } else {
+      throw new Error(data.error || 'Login failed');
+    }
+  } catch(err) {
+    console.error('Login error:', err);
+    errorMsg.textContent = err.message;
+    errorMsg.classList.add('show');
+    btn.disabled = false;
+    btnText.textContent = 'Login';
+  }
+});
+</script>
+</body>
+</html>
