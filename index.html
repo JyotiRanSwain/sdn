@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Sodesi - Premium Indian organic food brand. Buy Atta, Besan, Ragi Powder, Dal Tadka, Mix Sattu & Channa Sattu online." />
+<meta name="theme-color" content="#2E7D32" />
+<title>Sodesi | Premium Organic Indian Flour & Sattu</title>
+<link rel="icon" type="image/png" href="./images/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body data-page="home">
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <img src="./images/logo.png" alt="Sodesi" class="loader-logo" />
+    <div class="loader-bar"><span></span></div>
+    <p>Loading pure goodness...</p>
+  </div>
+</div>
+
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+<div class="animated-bg"><canvas id="particleCanvas"></canvas></div>
+
+<nav class="navbar transparent" id="navbar">
+  <div class="nav-container">
+    <div class="nav-left nav-menu">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="products.html" class="nav-link">Products</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="./images/logo.png" alt="Sodesi Logo" class="logo-img" /></a></div>
+    <div class="nav-right nav-menu">
+      <a href="policy.html" class="nav-link">Company Policy</a>
+      <a href="contact.html" class="nav-link">Contact Us</a>
+      <a href="careers.html" class="nav-link">Careers</a>
+      <a href="cart.html" class="nav-cart" aria-label="Cart"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="products.html">Products</a>
+    <a href="policy.html">Company Policy</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="careers.html">Careers</a>
+    <a href="cart.html">🛒 Cart</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="./images/sodesi_premium_food.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text" data-aos="fade-right" data-aos-duration="1200">
+      <h1>Pure Nutrition <br><span class="gold">From Nature</span></h1>
+      <p>Premium Indian Flour & Healthy Traditional Foods crafted with love, purity and centuries-old wisdom.</p>
+      <div class="hero-btns">
+        <a href="products.html" class="btn btn-primary">Explore Products <i class="fas fa-arrow-right"></i></a>
+        <a href="contact.html" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<section class="about-preview">
+  <div class="container">
+    <div class="split-layout">
+      <div class="split-img" data-aos="fade-right">
+        <div class="image-frame">
+          <img src="./images/fr.png" alt="Our heritage" />
+          <div class="image-badge"><h3>100%</h3><p>Organic</p></div>
+        </div>
+      </div>
+      <div class="split-content" data-aos="fade-left">
+        <span class="section-tag">About Sodesi</span>
+        <h2 class="section-title">Crafting Purity, <br>Serving Tradition</h2>
+        <p class="lead">For over a decade, Sodesi has been the trusted name in premium organic Indian foods. Born from the rich soil of Balipatana, our products carry the essence of authentic Indian nutrition.</p>
+        <p>From stone-ground atta to nutrient-rich sattu, every pack is a promise — of quality, purity, and care.</p>
+        <a href="about.html" class="btn btn-primary">Discover Our Story <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card glass" data-aos="zoom-in"><div class="stat-icon"><i class="fas fa-award"></i></div><h3 class="counter" data-target="15">0</h3><span>+</span><p>Years of Trust</p></div>
+      <div class="stat-card glass" data-aos="zoom-in" data-aos-delay="100"><div class="stat-icon"><i class="fas fa-smile-beam"></i></div><h3 class="counter" data-target="50000">0</h3><span>+</span><p>Happy Customers</p></div>
+      <div class="stat-card glass" data-aos="zoom-in" data-aos-delay="200"><div class="stat-icon"><i class="fas fa-leaf"></i></div><h3 class="counter" data-target="100">0</h3><span>%</span><p>Quality Products</p></div>
+      <div class="stat-card glass" data-aos="zoom-in" data-aos-delay="300"><div class="stat-icon"><i class="fas fa-globe-asia"></i></div><h3 class="counter" data-target="25">0</h3><span>+</span><p>States Served</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why-sodesi">
+  <div class="container">
+    <div class="why-box glass" data-aos="fade-up">
+      <span class="section-tag">Our Promise</span>
+      <h2 class="section-title">Why Sodesi</h2>
+      <p class="why-intro">At Sodesi, we are passionate about offering wholesome, organic packaged foods that nourish both your body and the environment. Founded on the belief that real, nutrient-rich food should be accessible to all.</p>
+      <div class="why-grid">
+        <div class="why-item" data-aos="zoom-in"><div class="why-icon"><i class="fas fa-hand-sparkles"></i></div><h4>Purely Handmade</h4></div>
+        <div class="why-item" data-aos="zoom-in" data-aos-delay="100"><div class="why-icon"><i class="fas fa-ban"></i></div><h4>No Preservative</h4></div>
+        <div class="why-item" data-aos="zoom-in" data-aos-delay="200"><div class="why-icon"><i class="fas fa-circle-minus"></i></div><h4>No Additives</h4></div>
+        <div class="why-item" data-aos="zoom-in" data-aos-delay="300"><div class="why-icon"><i class="fas fa-scroll"></i></div><h4>Ancient Food</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS (rendered dynamically with Add to Cart / Buy Now) -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="section-tag">Our Products</span>
+      <h2 class="section-title">Premium Selections</h2>
+      <p class="section-sub">Handpicked, carefully processed, and delivered to your doorstep.</p>
+    </div>
+    <div class="filter-bar" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="flour">Flour</button>
+      <button class="filter-btn" data-filter="sattu">Sattu</button>
+      <button class="filter-btn" data-filter="specialty">Specialty</button>
+    </div>
+    <div class="products-grid"></div>
+    <div class="center-action" data-aos="fade-up">
+      <a href="products.html" class="btn btn-primary">View All Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="benefits-section">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up"><span class="section-tag">Benefits</span><h2 class="section-title">Healthy Benefits</h2></div>
+    <div class="benefits-grid">
+      <div class="benefit-card" data-aos="flip-left"><div class="benefit-icon"><i class="fas fa-seedling"></i></div><h4>100% Natural</h4><p>Pure ingredients, zero additives.</p></div>
+      <div class="benefit-card" data-aos="flip-left" data-aos-delay="100"><div class="benefit-icon"><i class="fas fa-mortar-pestle"></i></div><h4>Stone Ground</h4><p>Traditional cold grinding.</p></div>
+      <div class="benefit-card" data-aos="flip-left" data-aos-delay="200"><div class="benefit-icon"><i class="fas fa-dumbbell"></i></div><h4>Rich in Protein</h4><p>Powerful nutrition for all.</p></div>
+      <div class="benefit-card" data-aos="flip-left" data-aos-delay="300"><div class="benefit-icon"><i class="fas fa-wheat-awn"></i></div><h4>High Fibre</h4><p>Digestive health assured.</p></div>
+      <div class="benefit-card" data-aos="flip-left" data-aos-delay="400"><div class="benefit-icon"><i class="fas fa-flask"></i></div><h4>No Chemicals</h4><p>Zero preservatives or colors.</p></div>
+      <div class="benefit-card" data-aos="flip-left" data-aos-delay="500"><div class="benefit-icon"><i class="fas fa-utensils"></i></div><h4>Traditional Taste</h4><p>Authentic Indian flavor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up"><span class="section-tag">Testimonials</span><h2 class="section-title">What Our Customers Say</h2></div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card glass" data-aos="fade-up"><div class="stars">★★★★★</div><p>"Sodesi atta has transformed our family breakfast. The aroma and taste remind me of my grandmother's kitchen."</p><div class="testimonial-author"><div class="avatar">RS</div><div><h5>Rashmi Sharma</h5><span>Bhubaneswar</span></div></div></div>
+      <div class="testimonial-card glass" data-aos="fade-up" data-aos-delay="100"><div class="stars">★★★★★</div><p>"The channa sattu is incredibly pure. My kids love it with jaggery. Highly recommended!"</p><div class="testimonial-author"><div class="avatar">AK</div><div><h5>Anil Kumar</h5><span>Cuttack</span></div></div></div>
+      <div class="testimonial-card glass" data-aos="fade-up" data-aos-delay="200"><div class="stars">★★★★★</div><p>"The ragi powder from Sodesi has been a game changer. Premium quality, worth every rupee."</p><div class="testimonial-author"><div class="avatar">PM</div><div><h5>Priya Mohanty</h5><span>Delhi</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="section-tag">Gallery</span>
+      <h2 class="section-title">Moments at Sodesi</h2>
+    </div>
+    <div class="masonry">
+      <div class="masonry-item" data-aos="zoom-in"><img src="./images/Dal-tadka-ki.png" alt="Gallery" /></div>
+      <div class="masonry-item tall" data-aos="zoom-in"><img src="./images/comp-all.png" alt="Gallery" /></div>
+      <div class="masonry-item" data-aos="zoom-in"><img src="./images/ragi-ki.png" alt="Gallery" /></div>
+      <div class="masonry-item" data-aos="zoom-in"><img src="./images/satu-drink.png" alt="Gallery" /></div>
+      <div class="masonry-item tall" data-aos="zoom-in"><img src="./images/village-kic.png" alt="Gallery" /></div>
+      <div class="masonry-item" data-aos="zoom-in"><img src="./images/comp-ma.png" alt="Gallery" /></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-cta">
+  <div class="container">
+    <div class="cta-card glass" data-aos="zoom-in">
+      <h2>Ready to Experience Purity?</h2>
+      <p>Get in touch with our team today and bring home the best of Indian nutrition.</p>
+      <a href="contact.html" class="btn btn-primary btn-lg">Contact Now <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-certs">
+      <div class="cert-badge"><img src="./images/fssai.png" alt="FSSAI Certified" onerror="this.style.display='none'" /><span>FSSAI Certified</span></div>
+      <div class="cert-badge"><i class="fas fa-leaf"></i><span>100% Organic</span></div>
+      <div class="cert-badge"><i class="fas fa-flag"></i><span>Made in India</span></div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="./images/logo.png" alt="Sodesi" class="footer-logo" />
+        <p>Premium organic Indian food brand bringing the purest nutrition to your family since years.</p>
+        <div class="socials"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="policy.html">Company Policy</a></li><li><a href="careers.html">Careers</a></li></ul></div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="products.html">Atta</a></li><li><a href="products.html">Besan</a></li><li><a href="products.html">Ragi Powder</a></li><li><a href="products.html">Dal Tadka</a></li><li><a href="products.html">Mix Sattu</a></li><li><a href="products.html">Channa Sattu</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul class="contact-list"><li><i class="fas fa-envelope"></i> <a href="mailto:info@sodesifoods.com">info@sodesifoods.com</a></li><li><i class="fas fa-phone"></i> <a href="tel:+919658525234">+91 9658525234</a></li><li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919658525234">WhatsApp Chat</a></li><li><i class="fas fa-map-marker-alt"></i> Plot No-158, Balipatana, Bhubaneswar, Pin-751003</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sodesi. All Rights Reserved. | Powered by <a href="https://powercloud.in/" target="_blank" rel="noopener" class="powercloud">PowerCloud</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919658525234" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+<button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="./js/script.js?v=2"></script>
+</body>
+</html>
