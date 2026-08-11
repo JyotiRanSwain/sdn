@@ -1774,3 +1774,120 @@ section { padding: 100px 0; position: relative; }
   background: transparent !important;
   padding: 0 !important;
 }
+
+
+/* ── Mobile: Flipkart-like 2 columns ── */
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .product-card { padding: 8px; }
+  .product-info h3 { font-size: 0.9rem; }
+  .product-actions { flex-direction: column; }
+  .product-actions .btn { width: 100%; }
+}
+
+@media (max-width: 380px) {
+  .products-grid { gap: 8px; }
+  .weight-chips button { padding: 2px 8px; font-size: 10px; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   FLIPKART-STYLE COMPACT PRODUCT GRID
+   ═══════════════════════════════════════════════════════ */
+.products-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.product-card { padding: 10px; border-radius: 12px; }
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.18);
+}
+
+.product-img { margin-bottom: 10px; border-radius: 8px; }
+.product-img img { object-fit: contain; padding: 4px; }
+
+.product-info h3 {
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.p-desc { display: none; }
+
+.price-row { margin: 4px 0 6px; gap: 6px; }
+.price { font-size: 1.05rem; }
+.price-row s { font-size: 0.75rem; }
+.price-row .off { font-size: 10px; padding: 2px 7px; }
+
+.weight-chips { margin: 2px 0 6px; gap: 5px; }
+.weight-chips button { padding: 3px 10px; font-size: 10.5px; border-width: 1.5px; }
+
+.product-meta { margin-bottom: 6px; }
+.stock-hint { font-size: 10.5px; }
+
+.product-actions { margin-top: 8px; gap: 6px; }
+.product-actions .btn { font-size: 11px; padding: 7px 6px; }
+
+.badge { top: 14px; right: 14px; padding: 4px 10px; font-size: 9.5px; }
+
+/* ── Tablet: 3 columns ── */
+@media (max-width: 1024px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+}
+
+/* ── Mobile: Flipkart-like 2 columns ── */
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .product-card { padding: 8px; }
+  .product-info h3 { font-size: 0.9rem; }
+  .product-actions { flex-direction: column; }
+  .product-actions .btn { width: 100%; }
+}
+
+@media (max-width: 380px) {
+  .products-grid { gap: 8px; }
+  .weight-chips button { padding: 2px 8px; font-size: 10px; }
+}
+/* ═══════════════════════════════════════════════════════
+   MOBILE PRODUCTS PAGE — chips → search → products → bulk
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* smaller banner so content appears faster */
+  .page-hero { min-height: 32vh; padding-top: 95px; }
+  .page-hero h1 { font-size: 2rem; margin-bottom: 8px; }
+  .page-hero p { font-size: 0.95rem; }
+
+  /* unlock the sidebar so we can re-order its parts */
+  .products-layout { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .product-sidebar { display: contents; }
+  .product-sidebar h3 { display: none; }   /* hide "Categories" title on mobile */
+
+  /* 1️⃣ Categories = horizontal scrolling chips */
+  .category-menu {
+    order: 1;
+    display: flex; overflow-x: auto; gap: 8px;
+    padding: 4px 2px 8px; margin-bottom: 0;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .category-menu::-webkit-scrollbar { display: none; }
+  .category-menu li {
+    flex: 0 0 auto; margin-bottom: 0;
+    padding: 10px 18px; border-radius: 50px;
+    border: 1.5px solid rgba(46,125,50,.25);
+    background: var(--white);
+    font-size: 13px; white-space: nowrap;
+  }
+  .category-menu li i { width: auto; }
+
+  /* 2️⃣ Search box */
+  .sidebar-search { order: 2; }
+  .sidebar-search input { margin-bottom: 0; }
+
+  /* 3️⃣ Products grid (2 per row from your Flipkart block) */
+  .product-main { order: 3; }
+
+  /* 4️⃣ Bulk Order box at the bottom */
+  .sidebar-cta { order: 4; margin-top: 14px; }
+}
