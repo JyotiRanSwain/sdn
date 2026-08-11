@@ -285,7 +285,10 @@ function printCourierLabel(o) {
   <div class="label">
     <div class="top">
       <div class="company">
-        <h1>🌿 SODESI FOODS</h1>
+        <h1>
+  <img src="../images/logo.png" alt="Sodesi Foods Logo" style="height: 1.2em; vertical-align: middle; margin-right: 8px;">
+  SODESI FOODS
+</h1>
         <p>Plot No-158, Balipatana,</p>
         <p>Bhubaneswar, Odisha - 751003</p>
         <p>📞 +91 9658525234</p>
