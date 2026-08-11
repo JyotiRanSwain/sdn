@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard | Sodesi</title>
-<link rel="icon" type="image/png" href="../images/logo.png" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="../images/logo.png" />
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/admin.css">
 <style>
@@ -49,6 +49,14 @@
 .img-preview { max-width: 200px; max-height: 200px; border-radius: 8px; margin-top: 10px; }
 .status-select { padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
 .glass { background: white; }
+.orders-toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+.orders-toolbar input[type=text] { flex: 1; min-width: 220px; padding: 10px 14px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: inherit; }
+.orders-toolbar input[type=date] { padding: 9px 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: inherit; }
+.orders-pagination { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+.orders-pagination button { padding: 6px 12px; border: 1px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-family: inherit; }
+.orders-pagination button.active { background: #2E7D32; color: #fff; border-color: #2E7D32; }
+.orders-pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+.orders-pagination span { color: #666; font-size: 13px; margin-right: 8px; }
 </style>
 </head>
 <body class="admin-body">
@@ -132,8 +140,17 @@
 
   <!-- ORDERS TAB -->
   <div id="tab-orders" class="tab-panel glass" style="display:none">
+    <div class="orders-toolbar">
+  <input type="text" id="orderSearch" oninput="applyOrderFilters()" placeholder="🔍 Search Order ID (e.g. SODMSOHX6XGJ6FIP), name, phone...">
+  <button class="btn btn-sm btn-primary" onclick="applyOrderFilters()"><i class="fas fa-search"></i> Search</button>
+  <label style="font-size:13px;color:#666">From</label>
+  <input type="date" id="orderDateFrom" onchange="applyOrderFilters()">
+  <label style="font-size:13px;color:#666">To</label>
+  <input type="date" id="orderDateTo" onchange="applyOrderFilters()">
+  <!-- <button class="btn btn-sm btn-outline-dark" onclick="clearOrderFilters()"><i class="fas fa-times"></i> Clear</button> -->
+</div>
     <table class="admin-table">
-      <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th></tr></thead>
+      <thead><tr><th>Order ID / Date</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Print</th></tr></thead>
       <tbody id="ordersTbody"></tbody>
     </table>
   </div>
@@ -156,6 +173,6 @@
   </div>
 </div>
 
-<script src="../js/admin.js?v=3"></script>
+<script src="../js/admin.js?v=13"></script>
 </body>
 </html>
