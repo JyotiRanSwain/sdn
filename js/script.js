@@ -169,36 +169,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ═══ LOAD SETTINGS (LIVE FROM ADMIN) ═══ */
-  async function loadSettings() {
-    try {
-      const res = await fetch(APPS_SCRIPT_URL + '?path=/api/settings', { method: 'GET', redirect: 'follow' });
-      const data = await res.json();
-      if (data && typeof data === 'object' && data.delivery_charge !== undefined) {
-        S.settings = {
-          delivery_charge: Number(data.delivery_charge) || 49,
-          free_delivery_threshold: Number(data.free_delivery_threshold) || 499,
-          gst_percent: Number(data.gst_percent) || 0
-        };
-        console.log('✅ SETTINGS LOADED:', S.settings);
-        renderCartPage(); renderCheckoutSummary();
-      }
-    } catch (err) { console.error('❌ Settings load failed:', err); }
+  async function fetchJsonRetry(url, tries = 3) {
+    for (let i = 0; i < tries; i++) {
+      try {
+        const res = await fetch(url, { redirect: 'follow' });
+        const text = (await res.text()).trim();
+        if (text.charAt(0) === '{' || text.charAt(0) === '[') return JSON.parse(text);
+      } catch (e) {}
+      await new Promise(r => setTimeout(r, 1000)); // wait 1s, try again
+    }
+    return null;
   }
 
-  /* ═══ LOAD PRODUCTS (LIVE FROM SHEET) ═══ */
-  function loadProducts() {
-    fetch(APPS_SCRIPT_URL + '?path=/api/products', { method: 'GET', redirect: 'follow' })
-      .then(r => r.json())
-      .then(list => {
-        if (Array.isArray(list) && list.length > 0) {
-          S.products = list;
-          S.byId = Object.fromEntries(S.products.map(p => [p.id, p]));
-          console.log('✅ PRODUCTS LOADED FROM SHEET:', S.products.length);
-        } else { console.warn('⚠️ No active products in sheet'); }
-        renderGrids();
-      })
-      .catch(err => { console.error('❌ Products load failed:', err); renderGrids(); });
+  async function loadSettings() {
+    const data = await fetchJsonRetry(APPS_SCRIPT_URL + '?path=/api/settings');
+    if (data && data.delivery_charge !== undefined) {
+      S.settings = {
+        delivery_charge: Number(data.delivery_charge) || 49,
+        free_delivery_threshold: Number(data.free_delivery_threshold) || 499,
+        gst_percent: Number(data.gst_percent) || 0
+      };
+      console.log('✅ SETTINGS LOADED:', S.settings);
+      renderCartPage(); renderCheckoutSummary();
+    }
   }
+
+  async function loadProducts() {
+    const list = await fetchJsonRetry(APPS_SCRIPT_URL + '?path=/api/products');
+    if (Array.isArray(list) && list.length) {
+      S.products = list;
+      S.byId = Object.fromEntries(list.map(p => [p.id, p]));
+      console.log('✅ PRODUCTS LOADED:', list.length);
+    }
+    renderGrids();
+  }
+  loadSettings();
+  loadProducts();
   loadSettings();
   loadProducts();
 
