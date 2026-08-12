@@ -57,6 +57,74 @@
 .orders-pagination button.active { background: #2E7D32; color: #fff; border-color: #2E7D32; }
 .orders-pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
 .orders-pagination span { color: #666; font-size: 13px; margin-right: 8px; }
+/* ═══════════════════════════════════════════════════════
+   ADMIN PANEL — PERFECT MOBILE VIEW
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* ── Top bar ── */
+  .admin-top { padding: 10px 12px; gap: 8px; }
+  .admin-top img { height: 32px; }
+  .admin-top h1 { font-size: 14px; flex: 1; min-width: 100px; }
+  .admin-top a, .admin-top button { padding: 7px 10px; font-size: 11px; border-radius: 6px; }
+
+  .admin-wrap { margin: 14px auto; padding: 0 10px; }
+
+  /* ── Stats: 2 per row, compact ── */
+  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+  .admin-stat { padding: 14px 12px; }
+  .admin-stat i { font-size: 20px; margin-bottom: 6px; }
+  .admin-stat h3 { font-size: 20px; }
+  .admin-stat p { font-size: 11px; margin-top: 2px; }
+
+  /* ── Tabs: horizontal scroll like an app ── */
+  .tabs { flex-wrap: nowrap; overflow-x: auto; gap: 8px; padding-bottom: 6px;
+          -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { flex: 0 0 auto; padding: 10px 16px; font-size: 13px; white-space: nowrap; }
+
+  /* ── Panels ── */
+  .tab-panel { padding: 14px 10px; border-radius: 10px; }
+
+  /* ── Tables: smooth horizontal scroll ── */
+  #tab-products, #tab-orders { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .admin-table { min-width: 680px; }
+  .admin-table th, .admin-table td { padding: 8px; font-size: 12px; }
+  .admin-table td img { width: 40px; height: 40px; }
+  .status-select { font-size: 12px; padding: 4px 6px; }
+  .icon-btn { width: 30px; height: 30px; }
+
+  /* ── Orders toolbar: stacked & touch-friendly ── */
+  .orders-toolbar { flex-wrap: wrap; gap: 8px; }
+  .orders-toolbar input[type=text] { flex: 1 1 100%; min-width: 0; }
+  .orders-toolbar label { display: none; }
+  .orders-toolbar input[type=date] { flex: 1 1 42%; padding: 10px; }
+  .orders-toolbar .btn { flex: 1 1 auto; padding: 10px 12px; font-size: 12px; }
+
+  /* ── Forms: single column ── */
+  .admin-form .form-row { grid-template-columns: 1fr; gap: 0; }
+  .admin-form input, .admin-form select, .admin-form textarea { padding: 12px 14px; font-size: 14px; }
+  .admin-form label { font-size: 13px; }
+  .nut-row { grid-template-columns: 1fr 1fr auto; gap: 6px; }
+  .nut-row input { padding: 9px 8px; font-size: 13px; }
+  .img-preview { max-width: 140px; max-height: 140px; }
+
+  /* ── Pagination: centered & compact ── */
+  .orders-pagination { justify-content: center; gap: 4px; }
+  .orders-pagination button { padding: 7px 10px; font-size: 12px; }
+  .orders-pagination span { font-size: 11px; width: 100%; text-align: center; margin: 0 0 4px; }
+
+  /* ── Buttons ── */
+  .btn-lg { padding: 12px 20px; font-size: 14px; }
+}
+
+/* ── Very small phones ── */
+@media (max-width: 400px) {
+  .admin-top h1 { font-size: 12px; }
+  .admin-top a, .admin-top button { padding: 6px 8px; font-size: 10px; }
+  .stat-grid { gap: 8px; }
+  .admin-stat h3 { font-size: 17px; }
+  .tab-btn { padding: 9px 13px; font-size: 12px; }
+}
 </style>
 </head>
 <body class="admin-body">
